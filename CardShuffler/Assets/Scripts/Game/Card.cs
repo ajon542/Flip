@@ -6,8 +6,11 @@ public class Card : MonoBehaviour
     public Texture2D face;
     public GameObject frontFace;
 
+    private Animator animator;
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -24,10 +27,9 @@ public class Card : MonoBehaviour
     /// </summary>
     public void ResetCard()
     {
-        GetComponent<Animator>().SetBool("Deal", false);
-        GetComponent<Animator>().SetBool("Flip", false);
-
-        GetComponent<Animator>().Play("Card_Reset");
+        animator.SetBool("Deal", false);
+        animator.SetBool("Flip", false);
+        animator.Play("Card_Reset");
     }
 
     /// <summary>
@@ -35,7 +37,7 @@ public class Card : MonoBehaviour
     /// </summary>
     public void DealCard()
     {
-        GetComponent<Animator>().SetBool("Deal", true);
+        animator.SetBool("Deal", true);
     }
 
     /// <summary>
@@ -43,7 +45,7 @@ public class Card : MonoBehaviour
     /// </summary>
     public void FlipCard()
     {
-        GetComponent<Animator>().SetBool("Flip", true);
+        animator.SetBool("Flip", true);
     }
 
     private void Update()

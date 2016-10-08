@@ -7,15 +7,4 @@ using System.Collections;
 /// </summary>
 public class PlayerView : IGameView
 {
-    private void Update()
-    {
-        //// TODO: Make this a button
-        // Deal a card.
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            // Notify the dealer we are ready for the card to be dealt.
-            DealCardMsg msg = new DealCardMsg();
-            PublishMsg(msg);
-        }
-    }
 }

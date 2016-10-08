@@ -27,19 +27,13 @@ public class CardsToDealMsg : BaseMsg
 }
 
 /// <summary>
-/// The PlayerView will send this message to the DealerView to
-/// let them know we are ready for the card to be dealt.
-/// </summary>
-public class DealCardMsg : BaseMsg { }
-
-/// <summary>
 /// Reset everything to the default state.
 /// </summary>
 public class ResetViewMsg : BaseMsg { }
 
 /// <summary>
-/// The DealerView will send this message to the PlayerView to
-/// in response to the DealCardMsg.
+/// The DealerView will send this message to the GameStatusView
+/// to notify of the card being dealt for history purposes.
 /// </summary>
 public class CardDealtMsg : BaseMsg
 {
