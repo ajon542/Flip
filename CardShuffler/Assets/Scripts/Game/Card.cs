@@ -71,7 +71,7 @@ public class Card : MonoBehaviour
     {
         if (IsMagic)
         {
-            Debug.Log("do magic");
+            GetComponent<Magic>().Play();
         }
     }
 }
