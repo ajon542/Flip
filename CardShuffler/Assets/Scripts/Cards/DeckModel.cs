@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class DeckModel
@@ -93,16 +94,20 @@ public class DeckModel
     /// <summary>
     /// Set magic card in the deck.
     /// </summary>
-    /// <param name="cardModel">The card to make magic.</param>
-    public void MakeMagicCard(CardModel cardModel)
+    /// <param name="number">The number of cards to make magic.</param>
+    public void MakeMagicCards(int number)
     {
-        // Find this card in the deck.
-        CardModel card = realWorldDeck.Find(c => c.Equals(cardModel));
+        Random rand = new Random();
 
-        // Make it MAGIC!
-        if (card != null)
+        while (number > 0)
         {
-            card.IsMagic = true;
+            int cardIndex = rand.Next(0, realWorldDeck.Count);
+
+            if (!realWorldDeck[cardIndex].IsMagic)
+            {
+                realWorldDeck[cardIndex].IsMagic = true;
+                number--;
+            }
         }
     }
 

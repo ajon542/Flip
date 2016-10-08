@@ -29,7 +29,7 @@ public class GameModel : IGameModel
         InitialDeckMsg msg = new InitialDeckMsg { Cards = deck };
         presenter.PublishMsg(msg);
 
-        MakeRandomMagicCards();
+        deckModel.MakeMagicCards(5);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class GameModel : IGameModel
         // Reset the deck.
         deckModel.ResetDeck();
 
-        MakeRandomMagicCards();
+        deckModel.MakeMagicCards(5);
 
         // Reset the views.
         ResetViewMsg resetMsg = new ResetViewMsg();
@@ -82,12 +82,5 @@ public class GameModel : IGameModel
 
         ShowBottomCardMsg msg = new ShowBottomCardMsg { Card = bottomCard };
         presenter.PublishMsg(msg);
-    }
-
-    private void MakeRandomMagicCards()
-    {
-        //// TODO: Make some of the cards magic.
-        CardModel magic = new CardModel("clubs", "2");
-        deckModel.MakeMagicCard(magic);
     }
 }
