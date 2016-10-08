@@ -15,7 +15,6 @@ public class Card : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("change");
             frontFace.GetComponent<MeshRenderer>().sharedMaterial.SetTexture("_MainTex", face);
         }
     }
