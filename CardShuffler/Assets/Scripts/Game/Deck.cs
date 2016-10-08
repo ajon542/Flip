@@ -65,7 +65,6 @@ public class Deck : MonoBehaviour
             // Search through the list of textures for the matching suit and rank.
             List<Texture2D> result = cardFaceTextures.FindAll(t => t.name.Contains(rank));
             Texture2D cardTex = result.Find(t => t.name.Contains(suit));
-            Debug.Log(cardTex.name);
 
             // Instantiate the card prefab.
             GameObject revealCard = (GameObject)Instantiate(cardPrefab, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));

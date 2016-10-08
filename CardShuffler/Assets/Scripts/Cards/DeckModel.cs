@@ -25,11 +25,6 @@ public class DeckModel
     private IShuffler shuffler;
 
     /// <summary>
-    /// The list of indices for cards to pick.
-    /// </summary>
-    private List<int> shuffledCardIndices;
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="DeckModel"/> class.
     /// </summary>
     /// <param name="dealer">The dealer implementation.</param>
@@ -47,7 +42,6 @@ public class DeckModel
         this.dealer = dealer;
         this.shuffler = shuffler;
         masterDeck = cards;
-        shuffledCardIndices = Enumerable.Range(0, masterDeck.Count).ToList();
 
         ResetDeck();
     }
@@ -57,7 +51,8 @@ public class DeckModel
     /// </summary>
     public void ShuffleDeck()
     {
-        shuffler.ShuffleDeck(realWorldDeck, shuffledCardIndices);
+        // Shuffle the copy of the deck.
+        shuffler.ShuffleDeck(realWorldDeck);
     }
 
     /// <summary>
@@ -69,7 +64,6 @@ public class DeckModel
     {
         List<CardModel> cards = dealer.DealCards(
             realWorldDeck,
-            shuffledCardIndices,
             numberOfCards);
 
         return cards;
@@ -80,9 +74,6 @@ public class DeckModel
     /// </summary>
     public void ResetDeck()
     {
-        // Sort the deck.
-        shuffledCardIndices = Enumerable.Range(0, masterDeck.Count).ToList();
-
         // Make a deep copy of the master deck.
         realWorldDeck = new List<CardModel>();
         foreach (CardModel card in masterDeck)

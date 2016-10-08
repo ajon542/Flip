@@ -42,6 +42,9 @@ public class GameModel : IGameModel
         presenter.PublishMsg(msg);
     }
 
+    /// <summary>
+    /// Reset the deck.
+    /// </summary>
     public void Reset()
     {
         // Reset the deck.
