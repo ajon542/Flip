@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Card : MonoBehaviour
 {
     public Texture2D face;
     public GameObject frontFace;
+
+    public delegate void FlipCompleteEventHandler(object sender, EventArgs e);
+    public event FlipCompleteEventHandler FlipCompleteHandler;
 
     private Animator animator;
 
@@ -57,6 +61,17 @@ public class Card : MonoBehaviour
             Input.GetMouseButton(0))
         {
             FlipCard();
+        }
+    }
+
+    /// <summary>
+    /// Notification of flip complete.
+    /// </summary>
+    public void FlipComplete()
+    {
+        if (FlipCompleteHandler != null)
+        {
+            FlipCompleteHandler(this, new EventArgs());
         }
     }
 }
