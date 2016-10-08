@@ -14,7 +14,7 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-                        // make fog work
+            // make fog work
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
@@ -29,7 +29,7 @@
             {
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
-                    float4 vertex : SV_POSITION;
+                float4 vertex : SV_POSITION;
             };
 
             sampler2D _MainTex;

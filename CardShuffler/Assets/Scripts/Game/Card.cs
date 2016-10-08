@@ -7,10 +7,9 @@ public class Card : MonoBehaviour
     public Texture2D face;
     public GameObject frontFace;
 
-    public delegate void FlipCompleteEventHandler(object sender, EventArgs e);
-    public event FlipCompleteEventHandler FlipCompleteHandler;
-
     private Animator animator;
+
+    public bool IsMagic { get; set; }
 
     private void Start()
     {
@@ -31,6 +30,7 @@ public class Card : MonoBehaviour
     /// </summary>
     public void ResetCard()
     {
+        IsMagic = false;
         animator.SetBool("Deal", false);
         animator.SetBool("Flip", false);
         animator.Play("Card_Reset");
@@ -69,9 +69,9 @@ public class Card : MonoBehaviour
     /// </summary>
     public void FlipComplete()
     {
-        if (FlipCompleteHandler != null)
+        if (IsMagic)
         {
-            FlipCompleteHandler(this, new EventArgs());
+            Debug.Log("do magic");
         }
     }
 }
