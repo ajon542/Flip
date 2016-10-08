@@ -105,6 +105,9 @@ public class Deck : MonoBehaviour
         return string.Format("{0} of {1}", rank, suit);
     }
 
+    /// <summary>
+    /// When the card reveal is complete, if the card is magic do something!
+    /// </summary>
     private void FlipComplete(object sender, EventArgs args)
     {
         if (dealtCardIsMagic)
