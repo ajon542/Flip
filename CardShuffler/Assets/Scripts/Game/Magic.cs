@@ -16,4 +16,16 @@ public class Magic : MonoBehaviour
             }
         }
     }
+
+    public void Reset()
+    {
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == "Front")
+            {
+                child.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(1, 1, 1, 1));
+            }
+        }
+    }
 }

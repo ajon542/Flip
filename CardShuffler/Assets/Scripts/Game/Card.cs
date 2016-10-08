@@ -31,6 +31,7 @@ public class Card : MonoBehaviour
     public void ResetCard()
     {
         IsMagic = false;
+        GetComponent<Magic>().Reset();
         animator.SetBool("Deal", false);
         animator.SetBool("Flip", false);
         animator.Play("Card_Reset");
