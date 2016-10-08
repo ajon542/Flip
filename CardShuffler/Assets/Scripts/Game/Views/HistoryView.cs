@@ -7,12 +7,6 @@ using System.Collections.Generic;
 /// </summary>
 public class HistoryView : IGameView
 {
-    //// TODO: Game start
-    //// TODO: Game in progress
-    //// TODO: Game over - no more cards left in deck
-    //// TODO: Game history - previous cards dealt
-
-
     /// <summary>
     /// This provides the parent object to be able to attach the runtime generated inventory list.
     /// </summary>

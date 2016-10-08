@@ -55,16 +55,11 @@ public class GameModel : IGameModel
         presenter.PublishMsg(resetMsg);
     }
 
+    /// <summary>
+    /// Shuffle the deck.
+    /// </summary>
     public void Shuffle()
     {
-        //// TODO: Shuffle remaining deck.
-        // Shuffle the deck.
         deckModel.ShuffleDeck();
-    }
-
-    public override void UpdateModel()
-    {
-        //// TODO: Casino operator could say to reset deck.
-        //// TODO: Casino operator could say to shuffle deck.
     }
 }

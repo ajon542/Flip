@@ -48,10 +48,13 @@ public class Card : MonoBehaviour
         animator.SetBool("Flip", true);
     }
 
+    /// <summary>
+    /// Flip the card on mouse click.
+    /// </summary>
     private void Update()
     {
-        // Flip the card.
-        if (Input.GetKeyDown(KeyCode.F))
+        //// TODO: Might be better to detect when the card is pressed.
+        if (Input.GetMouseButtonDown(0))
         {
             FlipCard();
         }
