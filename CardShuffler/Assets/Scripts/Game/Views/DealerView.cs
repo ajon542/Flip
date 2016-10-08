@@ -58,7 +58,7 @@ public class DealerView : IGameView
         PublishMsg(cardDealt);
 
         // Deal the card.
-        deck.DealCard(cardDealt.Card.RankName, cardDealt.Card.SuitName);
+        deck.DealCard(currentCard);
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class DealerView : IGameView
     {
         if (currentCard != null)
         {
-            deck.ResetCard(currentCard.RankName, currentCard.SuitName);
+            deck.ResetCard(currentCard);
         }
     }
 }

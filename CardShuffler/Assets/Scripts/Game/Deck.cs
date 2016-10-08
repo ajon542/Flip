@@ -25,11 +25,10 @@ public class Deck : MonoBehaviour
     /// <summary>
     /// Deal a particular card from the deck.
     /// </summary>
-    /// <param name="rank">The rank of the card to deal.</param>
-    /// <param name="suit">The suit of the card to deal.</param>
-    public void DealCard(RankName rank, SuitName suit)
+    /// <param name="card">The card to deal.</param>
+    public void DealCard(CardModel card)
     {
-        string cardName = CardName(rank, suit);
+        string cardName = CardName(card.RankName, card.SuitName);
 
         SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
 
@@ -39,11 +38,10 @@ public class Deck : MonoBehaviour
     /// <summary>
     /// Discard the card.
     /// </summary>
-    /// <param name="rank">The rank of the card to deal.</param>
-    /// <param name="suit">The suit of the card to deal.</param>
-    public void ResetCard(RankName rank, SuitName suit)
+    /// <param name="card">The card to reset.</param>
+    public void ResetCard(CardModel card)
     {
-        string cardName = CardName(rank, suit);
+        string cardName = CardName(card.RankName, card.SuitName);
 
         SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
 

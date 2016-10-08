@@ -59,6 +59,10 @@ public class GameModel : IGameModel
         // Reset the views.
         ResetViewMsg resetMsg = new ResetViewMsg();
         presenter.PublishMsg(resetMsg);
+
+        // Make some of the cards magic.
+        CardModel magic = new CardModel("clubs", "2", true);
+        deckModel.MakeMagicCard(magic);
     }
 
     /// <summary>
