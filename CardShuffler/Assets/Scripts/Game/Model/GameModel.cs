@@ -36,5 +36,7 @@ public class GameModel : IGameModel
 
     public override void UpdateModel()
     {
+        //// TODO: Casino operator could say to reset deck.
+        //// TODO: Casino operator could say to shuffle deck.
     }
 }

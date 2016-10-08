@@ -3,9 +3,19 @@ using UnityEngine;
 /// <summary>
 /// The base class for all messages.
 /// </summary>
-public class BaseMsg
-{
-}
+public class BaseMsg { }
+
+/// <summary>
+/// The dealer will send this message out to indicate the start
+/// of a game.
+/// </summary>
+public class StartGameMSg : BaseMsg { }
+
+/// <summary>
+/// The dealer will send this message out to indicate the end
+/// of a game.
+/// </summary>
+public class EndGameMsg : BaseMsg { }
 
 /// <summary>
 /// The GameModel will send this message at the start of a game
@@ -20,9 +30,7 @@ public class CardsToDealMsg : BaseMsg
 /// The PlayerView will send this message to the DealerView to
 /// let them know we are ready for the card to be dealt.
 /// </summary>
-public class DealCardMsg : BaseMsg
-{
-}
+public class DealCardMsg : BaseMsg { }
 
 /// <summary>
 /// The DealerView will send this message to the PlayerView to
