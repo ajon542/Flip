@@ -80,6 +80,9 @@ public class DeckModel
     /// </summary>
     public void ResetDeck()
     {
+        // Sort the deck.
+        shuffledCardIndices = Enumerable.Range(0, masterDeck.Count).ToList();
+
         // Make a deep copy of the master deck.
         realWorldDeck = new List<CardModel>();
         foreach (CardModel card in masterDeck)

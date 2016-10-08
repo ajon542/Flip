@@ -7,6 +7,8 @@ using System.Collections.Generic;
 /// </summary>
 public class GameModel : IGameModel
 {
+    private DeckModel deckModel;
+
     public override void Initialize(Presenter presenter)
     {
         // Let the base class do its thing.
@@ -21,7 +23,7 @@ public class GameModel : IGameModel
         List<CardModel> deck = config.GetInitialDeckState();
 
         // Initialize the deck model.
-        DeckModel deckModel = new DeckModel(dealer, shuffler, deck);
+        deckModel = new DeckModel(dealer, shuffler, deck);
 
         // Shuffle the deck.
         deckModel.ShuffleDeck();
@@ -32,6 +34,29 @@ public class GameModel : IGameModel
         // Send the dealt cards to the views to handle as needed.
         CardsToDealMsg msg = new CardsToDealMsg { Cards = dealtCards };
         presenter.PublishMsg(msg);
+    }
+
+    public void Reset()
+    {
+        // Reset the deck.
+        deckModel.ResetDeck();
+
+        // Reset the views.
+        ResetViewMsg resetMsg = new ResetViewMsg();
+        presenter.PublishMsg(resetMsg);
+
+        // Deal 52 cards.
+        List<CardModel> dealtCards = deckModel.DealCards(52);
+
+        // Send the dealt cards to the views to handle as needed.
+        CardsToDealMsg cardsMsg = new CardsToDealMsg { Cards = dealtCards };
+        presenter.PublishMsg(cardsMsg);
+    }
+
+    public void Shuffle()
+    {
+        // Shuffle the deck.
+        deckModel.ShuffleDeck();
     }
 
     public override void UpdateModel()

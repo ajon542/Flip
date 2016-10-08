@@ -64,6 +64,14 @@ public class DealerView : IGameView
     [RecvMsgMethod]
     private void ReceiveResetMsg(ResetViewMsg msg)
     {
+        // Remove the card from the table.
+        if (currentCardIndex > 0)
+        {
+            //// TODO: This is average, fix it...
+            CardModel currentCard = cardsToDeal[currentCardIndex - 1];
+            deck.ResetCard(currentCard.RankName, currentCard.SuitName);
+        }
+
         currentCardIndex = 0;
     }
 }
