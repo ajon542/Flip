@@ -44,7 +44,9 @@ public class HistoryView : IGameView
 
         GameObject listItem = (GameObject)Instantiate(listItemPrefab);
 
-        listItem.GetComponentInChildren<Text>().text = msg.Card.ToString();
+        string cardName = string.Format("{0} of {1}", msg.Card.RankName, msg.Card.SuitName);
+
+        listItem.GetComponentInChildren<Text>().text = cardName;
 
         listItem.transform.SetParent(inventoryListParent.transform);
     }
