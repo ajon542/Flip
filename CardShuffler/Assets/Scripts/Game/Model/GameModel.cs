@@ -35,6 +35,12 @@ public class GameModel : IGameModel
     /// </summary>
     public void DealCard()
     {
+        if (deckModel.IsEmpty())
+        {
+            //// TODO: Maybe display game over...
+            return;
+        }
+
         DealCardsMsg msg = new DealCardsMsg();
         msg.Cards = new List<CardModel>();
         msg.Cards.AddRange(deckModel.DealCards(1));

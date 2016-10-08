@@ -49,12 +49,12 @@ public class Card : MonoBehaviour
     }
 
     /// <summary>
-    /// Flip the card on mouse click.
+    /// Flip the card.
     /// </summary>
     private void Update()
     {
-        //// TODO: Might be better to detect when the card is pressed.
-        if (Input.GetMouseButtonDown(0))
+        //// TODO: There is a bug here, it flips automatically instead of waiting for user.
+        if (Input.GetMouseButton(0))
         {
             FlipCard();
         }

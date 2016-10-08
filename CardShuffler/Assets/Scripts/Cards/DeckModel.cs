@@ -47,6 +47,14 @@ public class DeckModel
     }
 
     /// <summary>
+    /// Whether the deck has any cards left.
+    /// </summary>
+    public bool IsEmpty()
+    {
+        return realWorldDeck.Count == 0;
+    }
+
+    /// <summary>
     /// Shuffle the deck of cards.
     /// </summary>
     public void ShuffleDeck()
