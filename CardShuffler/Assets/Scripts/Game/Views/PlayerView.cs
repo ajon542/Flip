@@ -19,6 +19,10 @@ public class PlayerView : IGameView
         }
     }
 
+    /// <summary>
+    /// This is the card being dealt.
+    /// </summary>
+    /// <param name="msg"></param>
     [RecvMsgMethod]
     private void ReceiveCardDealtMsg(CardDealtMsg msg)
     {

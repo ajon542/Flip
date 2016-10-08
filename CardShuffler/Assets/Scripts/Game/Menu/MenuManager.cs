@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MenuManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NewGame()
     {
-        Application.LoadLevel("CardGame");
+        SceneManager.LoadScene("CardGame");
     }
 
     /// <summary>

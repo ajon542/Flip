@@ -33,5 +33,9 @@ public class DealerView : IGameView
             CardDealtMsg cardDealt = new CardDealtMsg { Card = cardsToDeal[cardIndex++] };
             PublishMsg(cardDealt);
         }
+        else
+        {
+            Debug.Log("No more cards to deal");
+        }
     }
 }
