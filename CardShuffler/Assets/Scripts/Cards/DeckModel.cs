@@ -97,4 +97,18 @@ public class DeckModel
             card.IsMagic = true;
         }
     }
+
+    /// <summary>
+    /// Peek at the bottom card of the deck.
+    /// </summary>
+    /// <returns>The bottom card of the deck.</returns>
+    public CardModel Peek()
+    {
+        if (realWorldDeck.Count > 0)
+        {
+            return realWorldDeck[realWorldDeck.Count - 1];
+        }
+
+        return null;
+    }
 }

@@ -51,6 +51,21 @@ public class Deck : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets the texture for the card.
+    /// </summary>
+    /// <param name="rank">The rank of the card.</param>
+    /// <param name="suit">The suit of the card.</param>
+    /// <returns>The card texture.</returns>
+    public Texture2D GetFaceTexture(RankName rank, SuitName suit)
+    {
+        // Search through the list of textures for the matching suit and rank.
+        List<Texture2D> result = cardFaceTextures.FindAll(t => t.name.Contains(rank));
+        Texture2D cardTex = result.Find(t => t.name.Contains(suit));
+
+        return cardTex;
+    }
+
+    /// <summary>
     /// Create a card game object.
     /// </summary>
     /// <param name="rank">The rank of the card.</param>
@@ -62,9 +77,8 @@ public class Deck : MonoBehaviour
         // Don't create card if it already exists.
         if (!deck.ContainsKey(cardName))
         {
-            // Search through the list of textures for the matching suit and rank.
-            List<Texture2D> result = cardFaceTextures.FindAll(t => t.name.Contains(rank));
-            Texture2D cardTex = result.Find(t => t.name.Contains(suit));
+            // Get the face texture.
+            Texture2D cardTex = GetFaceTexture(rank, suit);
 
             // Instantiate the card prefab.
             GameObject revealCard = (GameObject)Instantiate(cardPrefab, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));

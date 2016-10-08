@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 /// <summary>
@@ -7,8 +8,24 @@ using System.Collections.Generic;
 public class DealerView : IGameView
 {
     private CardModel currentCard;
-    private List<CardModel> cardsToDeal;
     public Deck deck;
+    public GameObject bottomCard;
+
+    private float peekCardTime = 0f;
+
+    private void Update()
+    {
+        //// TODO: Probably could do some sort of fade in / out.
+        if (peekCardTime > 0.0f)
+        {
+            bottomCard.SetActive(true);
+            peekCardTime -= Time.deltaTime;
+        }
+        else
+        {
+            bottomCard.SetActive(false);
+        }
+    }
 
     /// <summary>
     /// Receive the cards to deal from the GameModel.
@@ -17,10 +34,8 @@ public class DealerView : IGameView
     [RecvMsgMethod]
     private void ReceiveInitialDeck(InitialDeckMsg msg)
     {
-        cardsToDeal = msg.Cards;
-
         // Create all the cards.
-        foreach (CardModel card in cardsToDeal)
+        foreach (CardModel card in msg.Cards)
         {
             deck.CreateCard(card.RankName, card.SuitName);
         }
@@ -44,6 +59,27 @@ public class DealerView : IGameView
 
         // Deal the card.
         deck.DealCard(cardDealt.Card.RankName, cardDealt.Card.SuitName);
+    }
+
+    /// <summary>
+    /// Show the bottom card in the deck.
+    /// </summary>
+    /// <param name="msg">The message containing the bottom card info.</param>
+    [RecvMsgMethod]
+    private void ReceiveShowBottomCard(ShowBottomCardMsg msg)
+    {
+        peekCardTime = 2f;
+
+        Image image = bottomCard.GetComponent<Image>();
+        if (image != null)
+        {
+            //// TODO: Make sure we aren't leaking any sprites here. I suspect we are.
+            Texture2D tex = deck.GetFaceTexture(msg.Card.RankName, msg.Card.SuitName);
+            image.sprite = Sprite.Create(
+                tex,
+                new Rect(0, 0, tex.width, tex.height),
+                new Vector2(0, 0));
+        }
     }
 
     /// <summary>

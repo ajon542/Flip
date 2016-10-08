@@ -62,4 +62,15 @@ public class GameModel : IGameModel
     {
         deckModel.ShuffleDeck();
     }
+
+    /// <summary>
+    /// Send the bottom card information to the view.
+    /// </summary>
+    public void Peek()
+    {
+        CardModel bottomCard = deckModel.Peek();
+
+        ShowBottomCardMsg msg = new ShowBottomCardMsg { Card = bottomCard };
+        presenter.PublishMsg(msg);
+    }
 }

@@ -36,6 +36,14 @@ public class CardDealtMsg : BaseMsg
     public CardModel Card { get; set; }
 }
 
+/// <summary>
+/// Show the bottom card in the deck.
+/// </summary>
+public class ShowBottomCardMsg : BaseMsg
+{
+    public CardModel Card { get; set; }
+}
+
 
 
 
