@@ -8,25 +8,24 @@ public class Shuffler : IShuffler
     /// Shuffle the deck.
     /// </summary>
     /// <param name="currentDeck">The deck.</param>
-    /// <param name="indices">The resulting shuffled indices.</param>
-    public void ShuffleDeck(List<CardModel> deck, List<int> indices)
+    public void ShuffleDeck(List<CardModel> deck)
     {
         Random rand = new Random();
 
         for (int i = 0; i < deck.Count; ++i)
         {
             int j = rand.Next(0, i);
-            Swap(indices, i, j);
+            Swap(deck, i, j);
         }
     }
 
     /// <summary>
     /// Swap two indices in a list.
     /// </summary>
-    private void Swap(List<int> indices, int i, int j)
+    private void Swap(List<CardModel> deck, int i, int j)
     {
-        int temp = indices[i];
-        indices[i] = indices[j];
-        indices[j] = temp;
+        CardModel temp = deck[i];
+        deck[i] = deck[j];
+        deck[j] = temp;
     }
 }
