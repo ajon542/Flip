@@ -22,12 +22,18 @@ public class Deck : MonoBehaviour
     /// </summary>
     private Dictionary<string, Card> deck = new Dictionary<string, Card>();
 
+    private bool dealtCardIsMagic;
+
+    public Magic magic;
+
     /// <summary>
     /// Deal a particular card from the deck.
     /// </summary>
     /// <param name="card">The card to deal.</param>
     public void DealCard(CardModel card)
     {
+        dealtCardIsMagic = card.IsMagic;
+
         string cardName = CardName(card.RankName, card.SuitName);
 
         SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
@@ -85,6 +91,7 @@ public class Deck : MonoBehaviour
             // Get the Card component.
             Card cardGameObject = (revealCard.GetComponentInChildren(typeof(Card)) as Card);
             cardGameObject.SetFaceTexture(cardTex);
+            cardGameObject.FlipCompleteHandler += FlipComplete;
 
             deck.Add(cardName, cardGameObject);
         }
@@ -96,5 +103,13 @@ public class Deck : MonoBehaviour
     private string CardName(RankName rank, SuitName suit)
     {
         return string.Format("{0} of {1}", rank, suit);
+    }
+
+    private void FlipComplete(object sender, EventArgs args)
+    {
+        if (dealtCardIsMagic)
+        {
+            magic.Play();
+        }
     }
 }
