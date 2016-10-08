@@ -24,12 +24,12 @@ public class DeckConfig
 
         SuitNames = new List<SuitName>
         {
-            "Clubs", "Diamonds", "Hearts", "Spades"
+            "clubs", "diamonds", "hearts", "spades"
         };
 
         RankNames = new List<RankName>
         {
-            "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"
+            "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"
         };
     }
 

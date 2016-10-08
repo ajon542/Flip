@@ -6,11 +6,8 @@ public class Card : MonoBehaviour
     public Texture2D face;
     public GameObject frontFace;
 
-    private Animator animator;
-
     private void Start()
     {
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -24,7 +21,7 @@ public class Card : MonoBehaviour
         // Flip the card.
         if (Input.GetKeyDown(KeyCode.F))
         {
-            animator.SetBool("Flip", true);
+            GetComponent<Animator>().SetBool("Flip", true);
         }
     }
 }

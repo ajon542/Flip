@@ -9,6 +9,7 @@ public class DealerView : IGameView
     private int cardIndex;
     private List<CardModel> cardsToDeal;
     public GameObject card;
+    public Deck deck;
 
     /// <summary>
     /// Receive the cards to deal from the GameModel.
@@ -34,8 +35,7 @@ public class DealerView : IGameView
             CardDealtMsg cardDealt = new CardDealtMsg { Card = cardsToDeal[cardIndex++] };
             PublishMsg(cardDealt);
 
-            // Instantiate the wreck game object at the same position we are at
-            GameObject revealCard = (GameObject)Instantiate(card, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
+            deck.CreateCard(card, cardDealt.Card.RankName, cardDealt.Card.SuitName);
         }
         else
         {
