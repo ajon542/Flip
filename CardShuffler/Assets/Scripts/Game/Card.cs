@@ -53,8 +53,8 @@ public class Card : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //// TODO: There is a bug here, it flips automatically instead of waiting for user.
-        if (Input.GetMouseButton(0))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Card_Idle") &&
+            Input.GetMouseButton(0))
         {
             FlipCard();
         }
