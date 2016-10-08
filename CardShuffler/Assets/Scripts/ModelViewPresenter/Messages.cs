@@ -11,4 +11,9 @@ public class SampleMsg : BaseMsg
 {
 }
 
+public class CardsToDealMsg : BaseMsg
+{
+    public List<CardModel> Cards { get; set; }
+}
+
 
