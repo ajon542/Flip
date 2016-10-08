@@ -10,18 +10,29 @@ public class Card : MonoBehaviour
     {
     }
 
+    /// <summary>
+    /// Set the face texture of the card.
+    /// </summary>
+    /// <param name="faceTex">The face texture.</param>
+    public void SetFaceTexture(Texture2D faceTex)
+    {
+        frontFace.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", faceTex);
+    }
+
+    /// <summary>
+    /// Flip the card over to reveal the suit and rank.
+    /// </summary>
+    public void FlipCard()
+    {
+        GetComponent<Animator>().SetBool("Flip", true);
+    }
+
     private void Update()
     {
-        // Example of swapping card face texture.
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            frontFace.GetComponent<MeshRenderer>().sharedMaterial.SetTexture("_MainTex", face);
-        }
-
         // Flip the card.
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GetComponent<Animator>().SetBool("Flip", true);
+            FlipCard();
         }
     }
 }

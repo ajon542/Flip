@@ -17,6 +17,11 @@ public class Deck : MonoBehaviour
     /// </summary>
     private List<GameObject> cardGameObjects;
 
+    private void Start()
+    {
+        cardGameObjects = new List<GameObject>();
+    }
+
     /// <summary>
     /// Create a card game object.
     /// </summary>
@@ -33,5 +38,10 @@ public class Deck : MonoBehaviour
         // Instantiate the card prefab.
         GameObject revealCard = (GameObject)Instantiate(card, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
         revealCard.transform.parent = this.transform;
+
+        // Set the face texture.
+        (revealCard.GetComponentInChildren(typeof(Card)) as Card).SetFaceTexture(cardTex);
+
+        cardGameObjects.Add(revealCard);
     }
 }
