@@ -1,27 +1,23 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// The base class for all messages.
 /// </summary>
 public class BaseMsg { }
 
 /// <summary>
-/// The dealer will send this message out to indicate the start
-/// of a game.
+/// Message indicating all the cards in the deck.
 /// </summary>
-public class StartGameMSg : BaseMsg { }
+public class InitialDeckMsg : BaseMsg
+{
+    public List<CardModel> Cards { get; set; }
+}
 
 /// <summary>
-/// The dealer will send this message out to indicate the end
-/// of a game.
+/// Deal the cards sent in this message.
 /// </summary>
-public class EndGameMsg : BaseMsg { }
-
-/// <summary>
-/// The GameModel will send this message at the start of a game
-/// to notify the listeners of all the shuffled cards in the deck.
-/// </summary>
-public class CardsToDealMsg : BaseMsg
+public class DealCardsMsg : BaseMsg
 {
     public List<CardModel> Cards { get; set; }
 }

@@ -25,14 +25,20 @@ public class GameModel : IGameModel
         // Initialize the deck model.
         deckModel = new DeckModel(dealer, shuffler, deck);
 
-        // Shuffle the deck.
-        deckModel.ShuffleDeck();
+        // Send the initial deck state.
+        InitialDeckMsg msg = new InitialDeckMsg { Cards = deck };
+        presenter.PublishMsg(msg);
+    }
 
-        // Deal 52 cards.
-        List<CardModel> dealtCards = deckModel.DealCards(52);
+    /// <summary>
+    /// Deal a single card.
+    /// </summary>
+    public void DealCard()
+    {
+        DealCardsMsg msg = new DealCardsMsg();
+        msg.Cards = new List<CardModel>();
+        msg.Cards.AddRange(deckModel.DealCards(1));
 
-        // Send the dealt cards to the views to handle as needed.
-        CardsToDealMsg msg = new CardsToDealMsg { Cards = dealtCards };
         presenter.PublishMsg(msg);
     }
 
@@ -44,17 +50,11 @@ public class GameModel : IGameModel
         // Reset the views.
         ResetViewMsg resetMsg = new ResetViewMsg();
         presenter.PublishMsg(resetMsg);
-
-        // Deal 52 cards.
-        List<CardModel> dealtCards = deckModel.DealCards(52);
-
-        // Send the dealt cards to the views to handle as needed.
-        CardsToDealMsg cardsMsg = new CardsToDealMsg { Cards = dealtCards };
-        presenter.PublishMsg(cardsMsg);
     }
 
     public void Shuffle()
     {
+        //// TODO: Shuffle remaining deck.
         // Shuffle the deck.
         deckModel.ShuffleDeck();
     }

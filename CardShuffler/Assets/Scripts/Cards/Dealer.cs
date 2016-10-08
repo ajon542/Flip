@@ -26,6 +26,9 @@ public class Dealer : IDealer
             // Move that card to dealt cards pile.
             dealtCards.Add(cardModel);
 
+            // Remove that card from the deck.
+            deck.RemoveAt(cardIndex);
+
             numberOfCards--;
         }
 
