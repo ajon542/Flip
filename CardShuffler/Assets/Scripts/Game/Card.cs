@@ -20,6 +20,25 @@ public class Card : MonoBehaviour
     }
 
     /// <summary>
+    /// Reset the card to the initial state.
+    /// </summary>
+    public void ResetCard()
+    {
+        GetComponent<Animator>().SetBool("Deal", false);
+        GetComponent<Animator>().SetBool("Flip", false);
+
+        GetComponent<Animator>().Play("Card_Reset");
+    }
+
+    /// <summary>
+    /// Deal the card to the player.
+    /// </summary>
+    public void DealCard()
+    {
+        GetComponent<Animator>().SetBool("Deal", true);
+    }
+
+    /// <summary>
     /// Flip the card over to reveal the suit and rank.
     /// </summary>
     public void FlipCard()

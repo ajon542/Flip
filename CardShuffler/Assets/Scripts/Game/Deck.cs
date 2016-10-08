@@ -8,40 +8,67 @@ using System.Collections.Generic;
 public class Deck : MonoBehaviour
 {
     /// <summary>
+    /// The card prefab.
+    /// </summary>
+    public GameObject cardPrefab;
+
+    /// <summary>
     /// Textures used on the face of the cards.
     /// </summary>
     public List<Texture2D> cardFaceTextures;
 
     /// <summary>
-    /// List of the card game objects.
+    /// Mapping of the card name to game objects.
     /// </summary>
-    private List<GameObject> cardGameObjects;
+    private Dictionary<string, Card> deck;
 
     private void Start()
     {
-        cardGameObjects = new List<GameObject>();
+        deck = new Dictionary<string, Card>();
+    }
+
+    public void DealCard(RankName rank, SuitName suit)
+    {
+        string cardName = CardName(rank, suit);
+
+        SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
+
+        deck[cardName].DealCard();
     }
 
     /// <summary>
     /// Create a card game object.
     /// </summary>
-    /// <param name="card">The card prefab.</param>
     /// <param name="rank">The rank of the card.</param>
     /// <param name="suit">The suit of the card.</param>
-    public void CreateCard(GameObject card, RankName rank, SuitName suit)
+    public void CreateCard(RankName rank, SuitName suit)
     {
-        // Search through the list of textures for the matching suit and rank.
-        List<Texture2D> result = cardFaceTextures.FindAll(t => t.name.Contains(rank));
-        Texture2D cardTex = result.Find(t => t.name.Contains(suit));
-        Debug.Log(cardTex.name);
+        string cardName = CardName(rank, suit);
 
-        // Instantiate the card prefab.
-        GameObject revealCard = (GameObject)Instantiate(card, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
-        revealCard.transform.parent = this.transform;
+        if (!deck.ContainsKey(cardName))
+        {
+            // Search through the list of textures for the matching suit and rank.
+            List<Texture2D> result = cardFaceTextures.FindAll(t => t.name.Contains(rank));
+            Texture2D cardTex = result.Find(t => t.name.Contains(suit));
+            Debug.Log(cardTex.name);
 
-        // Set the face texture.
-        (revealCard.GetComponentInChildren(typeof(Card)) as Card).SetFaceTexture(cardTex);
+            // Instantiate the card prefab.
+            GameObject revealCard = (GameObject)Instantiate(cardPrefab, new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
+            revealCard.transform.parent = this.transform;
 
-        cardGameObjects.Add(revealCard);
+            // Get the Card component.
+            Card cardGameObject = (revealCard.GetComponentInChildren(typeof(Card)) as Card);
+            cardGameObject.SetFaceTexture(cardTex);
+
+            deck.Add(cardName, cardGameObject);
+        }
+    }
+
+    /// <summary>
+    /// Generate a card name given rank and suit.
+    /// </summary>
+    private string CardName(RankName rank, SuitName suit)
+    {
+        return string.Format("{0} of {1}", rank, suit);
     }
 }

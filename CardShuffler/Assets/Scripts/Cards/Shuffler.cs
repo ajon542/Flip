@@ -13,8 +13,6 @@ public class Shuffler : IShuffler
     {
         Random rand = new Random();
 
-        indices = Enumerable.Range(0, deck.Count).ToList();
-
         for (int i = 0; i < deck.Count; ++i)
         {
             int j = rand.Next(0, i);

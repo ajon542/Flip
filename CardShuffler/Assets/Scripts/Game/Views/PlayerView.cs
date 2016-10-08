@@ -18,14 +18,4 @@ public class PlayerView : IGameView
             PublishMsg(msg);
         }
     }
-
-    /// <summary>
-    /// This is the card being dealt.
-    /// </summary>
-    /// <param name="msg"></param>
-    [RecvMsgMethod]
-    private void ReceiveCardDealtMsg(CardDealtMsg msg)
-    {
-        Debug.Log("CardDealt: " + msg.Card);
-    }
 }

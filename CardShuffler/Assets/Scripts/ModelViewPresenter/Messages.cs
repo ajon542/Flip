@@ -33,6 +33,11 @@ public class CardsToDealMsg : BaseMsg
 public class DealCardMsg : BaseMsg { }
 
 /// <summary>
+/// Reset everything to the default state.
+/// </summary>
+public class ResetViewMsg : BaseMsg { }
+
+/// <summary>
 /// The DealerView will send this message to the PlayerView to
 /// in response to the DealCardMsg.
 /// </summary>

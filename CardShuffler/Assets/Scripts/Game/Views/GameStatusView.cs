@@ -27,4 +27,13 @@ public class GameStatusView : IGameView
     {
         previousCards.Add(msg.Card);
     }
+
+    /// <summary>
+    /// Clear the history.
+    /// </summary>
+    [RecvMsgMethod]
+    private void ReceiveResetMsg(ResetViewMsg msg)
+    {
+        previousCards.Clear();
+    }
 }

@@ -8,7 +8,6 @@ public class DealerView : IGameView
 {
     private int cardIndex;
     private List<CardModel> cardsToDeal;
-    public GameObject card;
     public Deck deck;
 
     /// <summary>
@@ -20,6 +19,12 @@ public class DealerView : IGameView
     {
         Debug.Log("ReceiveCardsToDeal");
         cardsToDeal = msg.Cards;
+
+        // Create all the cards.
+        foreach (CardModel card in cardsToDeal)
+        {
+            deck.CreateCard(card.RankName, card.SuitName);
+        }
     }
 
     /// <summary>
@@ -32,10 +37,13 @@ public class DealerView : IGameView
     {
         if (cardIndex < cardsToDeal.Count)
         {
+            // Notify the card is being dealt.
             CardDealtMsg cardDealt = new CardDealtMsg { Card = cardsToDeal[cardIndex++] };
             PublishMsg(cardDealt);
 
-            deck.CreateCard(card, cardDealt.Card.RankName, cardDealt.Card.SuitName);
+            // Deal the card.
+            deck.DealCard(cardDealt.Card.RankName, cardDealt.Card.SuitName);
+            //deck.DealCard("10", "hearts");
         }
         else
         {
