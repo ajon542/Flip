@@ -104,11 +104,6 @@ public class DeckModel
         {
             card.IsMagic = true;
         }
-
-        foreach (var c in realWorldDeck)
-        {
-            UnityEngine.Debug.Log(c);
-        }
     }
 
     /// <summary>
