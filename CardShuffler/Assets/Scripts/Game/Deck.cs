@@ -20,13 +20,13 @@ public class Deck : MonoBehaviour
     /// <summary>
     /// Mapping of the card name to game objects.
     /// </summary>
-    private Dictionary<string, Card> deck;
+    private Dictionary<string, Card> deck = new Dictionary<string, Card>();
 
-    private void Start()
-    {
-        deck = new Dictionary<string, Card>();
-    }
-
+    /// <summary>
+    /// Deal a particular card from the deck.
+    /// </summary>
+    /// <param name="rank">The rank of the card to deal.</param>
+    /// <param name="suit">The suit of the card to deal.</param>
     public void DealCard(RankName rank, SuitName suit)
     {
         string cardName = CardName(rank, suit);
@@ -34,6 +34,20 @@ public class Deck : MonoBehaviour
         SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
 
         deck[cardName].DealCard();
+    }
+
+    /// <summary>
+    /// Discard the card.
+    /// </summary>
+    /// <param name="rank">The rank of the card to deal.</param>
+    /// <param name="suit">The suit of the card to deal.</param>
+    public void ResetCard(RankName rank, SuitName suit)
+    {
+        string cardName = CardName(rank, suit);
+
+        SoftwareAssert.Confirm(deck.ContainsKey(cardName), "Could not find the card {0} in deck", cardName);
+
+        deck[cardName].ResetCard();
     }
 
     /// <summary>
@@ -45,6 +59,7 @@ public class Deck : MonoBehaviour
     {
         string cardName = CardName(rank, suit);
 
+        // Don't create card if it already exists.
         if (!deck.ContainsKey(cardName))
         {
             // Search through the list of textures for the matching suit and rank.

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public class DealerView : IGameView
 {
-    private int cardIndex;
+    private int currentCardIndex;
     private List<CardModel> cardsToDeal;
     public Deck deck;
 
@@ -16,10 +16,18 @@ public class DealerView : IGameView
         // Deal a card.
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (cardIndex < cardsToDeal.Count)
+            if (currentCardIndex < cardsToDeal.Count)
             {
-                // Notify the card is being dealt.
-                CardDealtMsg cardDealt = new CardDealtMsg { Card = cardsToDeal[cardIndex++] };
+                // Remove the card from the table.
+                if (currentCardIndex > 0)
+                {
+                    //// TODO: This is average, fix it...
+                    CardModel currentCard = cardsToDeal[currentCardIndex - 1];
+                    deck.ResetCard(currentCard.RankName, currentCard.SuitName);
+                }
+
+                // Notify other views the card is being dealt.
+                CardDealtMsg cardDealt = new CardDealtMsg { Card = cardsToDeal[currentCardIndex++] };
                 PublishMsg(cardDealt);
 
                 // Deal the card.
@@ -48,5 +56,14 @@ public class DealerView : IGameView
         {
             deck.CreateCard(card.RankName, card.SuitName);
         }
+    }
+
+    /// <summary>
+    /// Reset the current card index.
+    /// </summary>
+    [RecvMsgMethod]
+    private void ReceiveResetMsg(ResetViewMsg msg)
+    {
+        currentCardIndex = 0;
     }
 }
