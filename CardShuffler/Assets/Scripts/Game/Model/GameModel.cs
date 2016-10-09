@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 /// Concrete implementation of the IGameModel abstract base class.
