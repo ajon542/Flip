@@ -27,7 +27,7 @@ public class GameModel : IGameModel
         InitialDeckMsg msg = new InitialDeckMsg { Cards = deck };
         presenter.PublishMsg(msg);
 
-        deckModel.MakeMagicCards(5);
+        deckModel.MakeMagicCards(20);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class GameModel : IGameModel
         // Reset the deck.
         deckModel.ResetDeck();
 
-        deckModel.MakeMagicCards(5);
+        deckModel.MakeMagicCards(20);
 
         // Reset the views.
         ResetViewMsg resetMsg = new ResetViewMsg();
