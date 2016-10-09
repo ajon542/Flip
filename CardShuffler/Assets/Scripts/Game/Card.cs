@@ -73,8 +73,9 @@ public class Card : MonoBehaviour
             return;
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Card_Idle") &&
-            Input.GetMouseButton(0))
+        // Only flip the card if in correct state.
+        if (Input.GetMouseButton(0) &&
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Card_Idle"))
         {
             FlipCard();
         }
