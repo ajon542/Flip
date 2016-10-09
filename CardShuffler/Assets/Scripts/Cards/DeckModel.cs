@@ -96,6 +96,8 @@ public class DeckModel
     /// <param name="number">The number of cards to make magic.</param>
     public void MakeMagicCards(int number)
     {
+        realWorldDeck[0].IsMagic = true;
+
         Random rand = new Random();
 
         while (number > 0)
