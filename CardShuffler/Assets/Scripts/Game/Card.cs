@@ -32,9 +32,13 @@ public class Card : MonoBehaviour
     {
         IsMagic = false;
         GetComponent<Magic>().Reset();
-        animator.SetBool("Deal", false);
-        animator.SetBool("Flip", false);
-        animator.Play("Card_Reset");
+
+        if (animator != null)
+        {
+            animator.SetBool("Deal", false);
+            animator.SetBool("Flip", false);
+            animator.Play("Card_Reset");
+        }
     }
 
     /// <summary>
@@ -42,7 +46,10 @@ public class Card : MonoBehaviour
     /// </summary>
     public void DealCard()
     {
-        animator.SetBool("Deal", true);
+        if (animator != null)
+        {
+            animator.SetBool("Deal", true);
+        }
     }
 
     /// <summary>
@@ -50,7 +57,10 @@ public class Card : MonoBehaviour
     /// </summary>
     public void FlipCard()
     {
-        animator.SetBool("Flip", true);
+        if (animator != null)
+        {
+            animator.SetBool("Flip", true);
+        }
     }
 
     /// <summary>
@@ -58,6 +68,11 @@ public class Card : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (animator == null)
+        {
+            return;
+        }
+
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Card_Idle") &&
             Input.GetMouseButton(0))
         {
