@@ -15,7 +15,7 @@ public class Magic : MonoBehaviour
     /// </summary>
     public void Play()
     {
-        deck = (GameObject)Instantiate(jokerPrefab, new Vector3(0, 1.65f, -1.5f), Quaternion.identity);
+        deck = (GameObject)Instantiate(jokerPrefab, new Vector3(0, 2.0f, -1.5f), Quaternion.identity);
         deck.transform.parent = this.transform;
     }
 
